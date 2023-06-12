@@ -1,0 +1,9 @@
+[submodule "third-party/curl"]
+	path = third-party/curl
+	url = https://github.com/curl/curl.git
+[submodule "third-party/SQLiteCpp"]
+	path = third-party/SQLiteCpp
+	url = https://github.com/SRombauts/SQLiteCpp.git
+[submodule "third-party/json"]
+	path = third-party/json
+	url = https://github.com/nlohmann/json.git
