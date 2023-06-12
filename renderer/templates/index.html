@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<canvas id="myChart"></canvas>
+<script>
+    var cntx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(cntx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Price Chart',
+                data: [],
+                borderColor: 'rgb(75, 200, 200)',
+                tension: 0.1
+            }]
+        }
+    });
+
+    var source = new EventSource("/kafka");
+    source.onmessage = function(event) {
+        var msg = JSON.parse(event.data);
+        chart.data.labels.push(msg.timestamp);
+        chart.data.datasets[0].data.push(msg.price);
+        chart.update();
+    }
+</script>
+</body>
+</html>
